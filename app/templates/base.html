@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}My Fancy Wiki{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    {% if 'username' in session %}
+                        <li role="presentation"><a href="{{url_for('logout')}}">{{session['username']}}</a></li>
+                    {% else %}
+                        <li role="presentation"><a href="{{url_for('login')}}">Login</a></li>
+                    {% endif %}
+
+                    <li role="presentation"><a href="{{url_for('index')}}">Home</a></li>
+                    <li role="presentation"><a href="{{url_for('pages')}}">Pages</a></li>
+                </ul>
+            </nav>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

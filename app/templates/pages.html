@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Pages{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1>Pages</h1>
+</div>
+
+{% if 'username' in session %}
+<div class="pull-right">
+    <a class="btn btn-primary" href="{{url_for('new_page')}}">Create A New Page</a>
+</div>
+{% endif %}
+
+<ul>
+    {% for page in pages %}
+        <li><a href="{{url_for('page', page_name=get_page_url_name(page))}}">{{get_page_display_name(page)}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
